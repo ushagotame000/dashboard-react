@@ -10,9 +10,10 @@ type NavItem = {
 
 type SidebarItemProps = {
   items: NavItem[];
+ setIsMobileOpen: React.Dispatch<React.SetStateAction<boolean>>; 
 };
 
-const SidebarItem: React.FC<SidebarItemProps> = ({ items }) => {
+const SidebarItem: React.FC<SidebarItemProps> = ({ items, setIsMobileOpen }) => {
   const { isExpanded, isHovered, isMobileOpen } = useSidebar();
   const showText = isExpanded || isHovered || isMobileOpen;
 
@@ -20,6 +21,9 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ items }) => {
 
   const handleClick = (path: string) => {
     setActivePath(path);
+    if (isMobileOpen) {
+      setIsMobileOpen(false);
+    }
   };
 
   return (
@@ -42,7 +46,11 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ items }) => {
             >
               <span
                 className={`flex items-center justify-center w-10 h-10 rounded-full transition-colors duration-200
-                  ${isActive ? "text-blue-600" : "text-gray-900 dark:text-white/40"}
+                  ${
+                    isActive
+                      ? "text-blue-600"
+                      : "text-gray-900 dark:text-white/40"
+                  }
                 `}
               >
                 {nav.icon}
@@ -51,7 +59,11 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ items }) => {
               {showText && (
                 <span
                   className={`flex-1 ml-3 transition-colors duration-200
-                    ${isActive ? "text-blue-600" : "text-gray-900 dark:text-white/40 hover:text-gray-700"}
+                    ${
+                      isActive
+                        ? "text-blue-600"
+                        : "text-gray-900 dark:text-white/40 hover:text-gray-700"
+                    }
                   `}
                 >
                   {nav.name}
