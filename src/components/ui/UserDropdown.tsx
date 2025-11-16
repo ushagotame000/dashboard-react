@@ -43,7 +43,7 @@ export default function UserDropdown() {
 
       {/* Dropdown */}
       {isOpen && (
-        <div className="absolute right-0 mt-4 w-48 rounded-xl shadow-lg p-2 bg-white border border-gray-200 hover:text-dark-900 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-900 dark:hover:bg-gray-800">
+        <div className="absolute z-100 right-0 mt-4 w-48 rounded-xl shadow-lg p-2 bg-white border border-gray-200 hover:text-dark-900 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-900 dark:hover:bg-gray-800">
           <button
             onClick={() => {
               closeDropdown();
