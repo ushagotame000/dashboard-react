@@ -9,7 +9,7 @@ import { fetchUsers } from "@features/users/usersSlice";
 import { TdCell, ThCell } from "./ui/TableCell";
 import { SkeletonRow } from "./ui/SkeletonRow";
 
-const USERS_PER_PAGE = 6;
+const USERS_PER_PAGE = 5;
 
 const UserTable: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -20,7 +20,7 @@ const UserTable: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortKey, setSortKey] = useState<"name" | "email" | "username" | "id">(
-    "name"
+    "id"
   );
 
   const debouncedPage = useDebounce(currentPage, 300);
@@ -54,7 +54,7 @@ const UserTable: React.FC = () => {
   );
 
   return (
-    <div className="p-4 space-y-4">
+    <div className="p-4 space-y-4 mt-10">
       <div className="flex flex-col md:flex-row items-center justify-between gap-4">
         <SearchBar value={searchTerm} onChange={setSearchTerm} />
 
@@ -76,7 +76,7 @@ const UserTable: React.FC = () => {
 
       {/* Tablef */}
       <div className="w-full overflow-x-auto">
-        <table className="md:min-w-[900px] w-full border border-gray-300 dark:border-gray-700 dark:text-white/40 rounded-md">
+        <table className="md:min-w-[700px] w-full border border-gray-300 dark:border-gray-700 dark:text-white/40 rounded-md">
           <thead className="bg-gray-200 dark:bg-gray-800">
             <tr>
               <ThCell>ID</ThCell>
