@@ -1,13 +1,25 @@
 import { useState } from "react";
 import { FaUser, FaSignOutAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export default function UserDropdown() {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
   const closeDropdown = () => setIsOpen(false);
+  const [logoutMsg, setLogoutMsg] = useState("");
 
-  const userName = "Usha Gotame";
+  const handleLogout = () =>{
+    localStorage.removeItem("username")
+    setLogoutMsg("Logout Successfully!")
+    setTimeout(()=>{
+      setLogoutMsg("");
+      navigate("/signin")
+    }, 1500);
+  }
+
+  const userName = localStorage.getItem("username");
 
   return (
     <div className="relative">
@@ -47,7 +59,7 @@ export default function UserDropdown() {
           <button
             onClick={() => {
               closeDropdown();
-              alert("Signed out!");
+              handleLogout();
             }}
             className="flex w-full items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 "
           >
@@ -55,6 +67,11 @@ export default function UserDropdown() {
             Sign Out
           </button>
         </div>
+      )}
+      {logoutMsg && (
+        <p className="text-green-300 text-sm mt-2 absolute right-0">
+          {logoutMsg}
+        </p>
       )}
     </div>
   );

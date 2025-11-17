@@ -49,12 +49,13 @@ const Home: React.FC = () => {
     "Integration with public user API using Redux Toolkit + RTK Query.",
   ];
 
+  const user = localStorage.getItem("username")
   return (
     <div className="p-6 space-y-8">
       {/*  Banner */}
       <div className="bg-gradient-to-r from-blue-500 via-indigo-500 to-pink-400 text-white p-8 rounded-xl shadow-md flex flex-col md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-3xl font-bold mb-2">Welcome to Dashboard !</h1>
+          <h1 className="text-3xl font-bold mb-2">Welcome {user} !</h1>
           <p className="text-blue-100 dark:text-blue-200">
             Dashboard template built using TypeScript, React, Tailwind CSS,
             Redux Toolkit, and public user API.
